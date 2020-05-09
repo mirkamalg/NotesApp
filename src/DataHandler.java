@@ -28,7 +28,7 @@ public class DataHandler {
     }
 
     @Contract(pure = true)
-    public static String formatDate(@NotNull LocalDateTime time) {
+    public static @NotNull String formatDate(@NotNull LocalDateTime time) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return time.format(formatter);
     }

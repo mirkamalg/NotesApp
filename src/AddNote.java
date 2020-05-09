@@ -1,3 +1,4 @@
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.geometry.Insets;
@@ -47,7 +48,7 @@ public class AddNote {
         bodyInput.setPrefHeight(200);
         GridPane.setConstraints(bodyInput, 1, 1);
 
-        javafx.scene.control.Button addButton = new Button("Add");
+        JFXButton addButton = new JFXButton("Add");
         GridPane.setConstraints(addButton, 1, 2);
 
         addButton.setOnAction(e -> {

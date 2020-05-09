@@ -33,13 +33,15 @@ public class EditHeader {
 
         AtomicReference<String> newHeader = new AtomicReference<>();
         applyButton.setOnAction(e -> {
-            newHeader.set(newHeaderInput.getText());
-            window.close();
+            if (!newHeaderInput.getText().isEmpty()){
+                newHeader.set(newHeaderInput.getText());
+                window.close();
+            }
         });
 
         grid.getChildren().addAll(newHeaderLabel, newHeaderInput, applyButton);
 
-        Scene scene = new Scene(grid, 350, 150);
+        Scene scene = new Scene(grid, 350, 85);
         window.setScene(scene);
         window.showAndWait();
         return newHeader;

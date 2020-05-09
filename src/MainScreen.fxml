@@ -29,7 +29,7 @@
       <items>
         <AnchorPane>
           <children>
-            <Label fx:id="todoLabel" alignment="CENTER" layoutX="105.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="To-Do" textAlignment="CENTER" wrapText="false">
+            <Label fx:id="todoLabel" alignment="CENTER" layoutX="105.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Notes" textAlignment="CENTER" wrapText="false">
               <font>
                 <Font size="18.0" fx:id="x1" />
               </font>
@@ -44,8 +44,8 @@
           <content>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
               <children>
-                <Label fx:id="headerLabel" alignment="CENTER" font="$x1" layoutX="235.0" layoutY="14.0" style="&#10;" text="Header" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                        <JFXTextArea fx:id="noteTextArea" layoutX="60.0" layoutY="44.0" prefHeight="492.0" prefWidth="414.0" text="Notes will be shown here" wrapText="true" />
+                <Label fx:id="headerLabel" alignment="CENTER" font="$x1" layoutX="235.0" layoutY="14.0" style="&#10;" text="Note context" textFill="$x2" wrapText="false" />
+                        <JFXTextArea fx:id="noteTextArea" editable="false" layoutX="60.0" layoutY="44.0" prefHeight="492.0" prefWidth="414.0" text="Note context will be shown here" wrapText="true" />
               </children>
             </AnchorPane>
           </content>
@@ -53,7 +53,7 @@
         <AnchorPane>
           <children>
             <Label fx:id="detailsLabel" alignment="CENTER" font="$x1" layoutX="110.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                  <JFXTextArea fx:id="detailsTextArea" editable="false" layoutX="40.0" layoutY="41.0" prefHeight="498.0" prefWidth="200.0" text="Details will be shown here" />
+                  <JFXTextArea fx:id="detailsTextArea" editable="false" layoutX="40.0" layoutY="41.0" prefHeight="498.0" prefWidth="200.0" text="Note details will be shown here" />
           </children>
         </AnchorPane>
       </items>

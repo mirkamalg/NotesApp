@@ -72,11 +72,8 @@ public class MainController {
     }
 
     public void getSelectedNote(MouseEvent mouseEvent) {
-        if (notesListView.getSelectionModel().getSelectedItem() != null) {
-            editHeaderButton.setDisable(false);
-            deleteButton.setDisable(false);
-            saveButton.setDisable(false);
-        }
+        enableButtons();
+        noteTextArea.setEditable(true);
         String chosenNoteHeader = notesListView.getSelectionModel().getSelectedItem();
         noteTextArea.setText(DataHandler.getNotes().get(chosenNoteHeader).getBody());
         detailsTextArea.setText("Last edited: " + DataHandler.formatDate(DataHandler.getNotes().get(chosenNoteHeader).getTime()) + " By: " + System.getProperty("user.name"));
@@ -108,12 +105,36 @@ public class MainController {
         if (answer){
             notesListView.getItems().remove(DataHandler.getNotes().get(deletedHeader).getHeader());
             DataHandler.getNotes().remove(DataHandler.getNotes().get(deletedHeader).getHeader());
+            noteTextArea.setText("Note is deleted");
+            noteTextArea.setEditable(false);
+            disableButtons();
         }
+        disableNoteEditing();
     }
 
     public void saveNoteAction(ActionEvent actionEvent) {
         String text = noteTextArea.getText();
         DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setBody(text);
         DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setTime(LocalDateTime.now());
+    }
+
+    private void enableButtons() {
+        if (notesListView.getSelectionModel().getSelectedItem() != null) {
+            editHeaderButton.setDisable(false);
+            deleteButton.setDisable(false);
+            saveButton.setDisable(false);
+        }
+    }
+
+    private void disableButtons() {
+        editHeaderButton.setDisable(true);
+        deleteButton.setDisable(true);
+        saveButton.setDisable(true);
+    }
+
+    private void disableNoteEditing() {
+        if (notesListView.getSelectionModel().getSelectedItem() != null) {
+            noteTextArea.setEditable(false);
+        }
     }
 }
