@@ -1,11 +1,9 @@
 import com.jfoenix.controls.JFXListView;
-import javafx.scene.control.ListView;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DataHandler {

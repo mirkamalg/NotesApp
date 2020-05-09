@@ -1,16 +1,9 @@
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.MenuItem;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -79,9 +72,11 @@ public class MainController {
     }
 
     public void getSelectedNote(MouseEvent mouseEvent) {
-        editHeaderButton.setDisable(false);
-        deleteButton.setDisable(false);
-        saveButton.setDisable(false);
+        if (notesListView.getSelectionModel().getSelectedItem() != null) {
+            editHeaderButton.setDisable(false);
+            deleteButton.setDisable(false);
+            saveButton.setDisable(false);
+        }
         String chosenNoteHeader = notesListView.getSelectionModel().getSelectedItem();
         noteTextArea.setText(DataHandler.getNotes().get(chosenNoteHeader).getBody());
         detailsTextArea.setText("Last edited: " + DataHandler.formatDate(DataHandler.getNotes().get(chosenNoteHeader).getTime()) + " By: " + System.getProperty("user.name"));
