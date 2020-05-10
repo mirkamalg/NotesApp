@@ -3,15 +3,20 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
-public class MainController {
+public class MainController implements Initializable {
 
     @FXML
     private JFXButton newNoteButton;
@@ -63,10 +68,11 @@ public class MainController {
         DataHandler.addToListView(notesListView, newNote);
     }
 
-    public void exitApp(ActionEvent actionEvent) {
+    public void exitApp(ActionEvent actionEvent) throws SQLException {
         boolean answer = ExitApp.confirmExit();
         if (answer){
             Stage window = (Stage) exitButton.getScene().getWindow();
+            DataBase.closeConnection();
             window.close();
         }
     }
@@ -76,25 +82,28 @@ public class MainController {
         noteTextArea.setEditable(true);
         String chosenNoteHeader = notesListView.getSelectionModel().getSelectedItem();
         noteTextArea.setText(DataHandler.getNotes().get(chosenNoteHeader).getBody());
-        detailsTextArea.setText("Last edited: " + DataHandler.formatDate(DataHandler.getNotes().get(chosenNoteHeader).getTime()) + " By: " + System.getProperty("user.name"));
+        detailsTextArea.setText("Last edited: " + DataHandler.getNotes().get(chosenNoteHeader).getTime() + " By: " + System.getProperty("user.name"));
     }
 
 
-    public void editHeaderAction(ActionEvent actionEvent) {
+    public void editHeaderAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         if (notesListView.getItems().size() == 0) {
             editHeaderButton.setDisable(true);
             return;
         }
+        String oldHeader = notesListView.getSelectionModel().getSelectedItem();
         String newHeader = EditHeader.initiateEditHeaderScreen().get();
         int index = notesListView.getSelectionModel().getSelectedIndex();
         Note note = DataHandler.getNotes().remove(notesListView.getSelectionModel().getSelectedItem());
         notesListView.getItems().remove(note.getHeader());
         note.setHeader(newHeader);
-        note.setTime(LocalDateTime.now());
+        note.setTime(DataHandler.formatDate(LocalDateTime.now()));
         DataHandler.insertToListView(notesListView, note, index);
+
+        DataBase.updateNoteHeader(oldHeader, newHeader);
     }
 
-    public void deleteNoteAction(ActionEvent actionEvent) {
+    public void deleteNoteAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         if (notesListView.getItems().size() == 0) {
             deleteButton.setDisable(true);
             return;
@@ -105,6 +114,9 @@ public class MainController {
         if (answer){
             notesListView.getItems().remove(DataHandler.getNotes().get(deletedHeader).getHeader());
             DataHandler.getNotes().remove(DataHandler.getNotes().get(deletedHeader).getHeader());
+
+            DataBase.deleteNote(deletedHeader);
+
             noteTextArea.setText("Note is deleted");
             noteTextArea.setEditable(false);
             disableButtons();
@@ -112,10 +124,13 @@ public class MainController {
         disableNoteEditing();
     }
 
-    public void saveNoteAction(ActionEvent actionEvent) {
-        String text = noteTextArea.getText();
-        DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setBody(text);
-        DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setTime(LocalDateTime.now());
+    public void saveNoteAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        String oldText = notesListView.getSelectionModel().getSelectedItem();
+        String newText = noteTextArea.getText();
+        DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setBody(newText);
+        DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setTime(DataHandler.formatDate(LocalDateTime.now()));
+
+        DataBase.updateNoteBody(oldText, newText);
     }
 
     private void enableButtons() {
@@ -136,5 +151,27 @@ public class MainController {
         if (notesListView.getSelectionModel().getSelectedItem() != null) {
             noteTextArea.setEditable(false);
         }
+    }
+
+    public JFXListView<String> getNotesListView() {
+        return notesListView;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        DataBase dataBase = new DataBase();
+        ResultSet rs;
+
+        try {
+            rs = dataBase.getNotesResultSet();
+            while (rs.next()) {
+                notesListView.getItems().add(rs.getString("header"));
+                DataHandler.getNotes().put(rs.getString("header"), new Note(rs.getString("header"), rs.getString("body"), rs.getString("time")));
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+
+
     }
 }

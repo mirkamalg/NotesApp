@@ -13,7 +13,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class AddNote {
@@ -54,9 +56,16 @@ public class AddNote {
         addButton.setOnAction(e -> {
             String noteHeader = headerInput.getText();
             String noteBody = bodyInput.getText();
-            LocalDateTime dateTime = LocalDateTime.now();
+            String noteTimeFormatted = DataHandler.formatDate(LocalDateTime.now());
 
-            newNote.set(new Note(noteHeader, noteBody, dateTime));
+            newNote.set(new Note(noteHeader, noteBody, DataHandler.formatDate(LocalDateTime.now())));
+
+            try {
+                DataBase.addNote(noteHeader, noteBody, noteTimeFormatted);
+            } catch (SQLException | ClassNotFoundException throwables) {
+                throwables.printStackTrace();
+            }
+
             window.close();
         });
 

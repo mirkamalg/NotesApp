@@ -4,9 +4,9 @@ public class Note {
 
     private String header;
     private String body;
-    private LocalDateTime time;
+    private String time;
 
-    public Note(String header, String body, LocalDateTime time) {
+    public Note(String header, String body, String time) {
         this.header = header;
         this.body = body;
         this.time = time;
@@ -28,11 +28,11 @@ public class Note {
         this.body = body;
     }
 
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }
