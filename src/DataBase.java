@@ -78,15 +78,15 @@ public class DataBase {
         prep.executeUpdate();
     }
 
-    public static void updateNoteBody(String oldBody, String newBody) throws SQLException, ClassNotFoundException {
+    public static void updateNoteBody(String header, String newBody) throws SQLException, ClassNotFoundException {
         if (con == null) {
             getConnection();
         }
         PreparedStatement prep = con.prepareStatement("UPDATE notes SET body=?"
-        + "WHERE body=?");
+        + "WHERE header=?");
 
         prep.setString(1, newBody);
-        prep.setString(2, oldBody);
+        prep.setString(2, header);
         prep.executeUpdate();
     }
 

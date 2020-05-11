@@ -87,10 +87,6 @@ public class MainController implements Initializable {
 
 
     public void editHeaderAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        if (notesListView.getItems().size() == 0) {
-            editHeaderButton.setDisable(true);
-            return;
-        }
         String oldHeader = notesListView.getSelectionModel().getSelectedItem();
         String newHeader = EditHeader.initiateEditHeaderScreen().get();
         int index = notesListView.getSelectionModel().getSelectedIndex();
@@ -104,10 +100,6 @@ public class MainController implements Initializable {
     }
 
     public void deleteNoteAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        if (notesListView.getItems().size() == 0) {
-            deleteButton.setDisable(true);
-            return;
-        }
         String deletedHeader = notesListView.getSelectionModel().getSelectedItem();
         boolean answer = DeleteNote.confirmDelete(deletedHeader);
 
@@ -125,12 +117,12 @@ public class MainController implements Initializable {
     }
 
     public void saveNoteAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        String oldText = notesListView.getSelectionModel().getSelectedItem();
+        String header = notesListView.getSelectionModel().getSelectedItem();
         String newText = noteTextArea.getText();
         DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setBody(newText);
         DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setTime(DataHandler.formatDate(LocalDateTime.now()));
 
-        DataBase.updateNoteBody(oldText, newText);
+        DataBase.updateNoteBody(header, newText);
     }
 
     private void enableButtons() {
