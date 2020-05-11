@@ -4,10 +4,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -15,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class AddNote {
@@ -58,15 +54,17 @@ public class AddNote {
             String noteBody = bodyInput.getText();
             String noteTimeFormatted = DataHandler.formatDate(LocalDateTime.now());
 
-            newNote.set(new Note(noteHeader, noteBody, DataHandler.formatDate(LocalDateTime.now())));
+            if (!headerInput.getText().isEmpty() && !DataHandler.getNotes().containsKey(headerInput.getText())){
+                newNote.set(new Note(noteHeader, noteBody, DataHandler.formatDate(LocalDateTime.now())));
 
-            try {
-                DataBase.addNote(noteHeader, noteBody, noteTimeFormatted);
-            } catch (SQLException | ClassNotFoundException throwables) {
-                throwables.printStackTrace();
+                try {
+                    DataBase.addNote(noteHeader, noteBody, noteTimeFormatted);
+                } catch (SQLException | ClassNotFoundException throwables) {
+                    throwables.printStackTrace();
+                }
+
+                window.close();
             }
-
-            window.close();
         });
 
         grid.getChildren().addAll(headerInput, headerLabel, bodyInput, bodyLabel, addButton);

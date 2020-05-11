@@ -89,14 +89,21 @@ public class MainController implements Initializable {
     public void editHeaderAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String oldHeader = notesListView.getSelectionModel().getSelectedItem();
         String newHeader = EditHeader.initiateEditHeaderScreen().get();
-        int index = notesListView.getSelectionModel().getSelectedIndex();
-        Note note = DataHandler.getNotes().remove(notesListView.getSelectionModel().getSelectedItem());
-        notesListView.getItems().remove(note.getHeader());
-        note.setHeader(newHeader);
-        note.setTime(DataHandler.formatDate(LocalDateTime.now()));
-        DataHandler.insertToListView(notesListView, note, index);
 
-        DataBase.updateNoteHeader(oldHeader, newHeader);
+        if (newHeader != null) {
+            int index = notesListView.getSelectionModel().getSelectedIndex();
+
+            Note note = DataHandler.getNotes().remove(notesListView.getSelectionModel().getSelectedItem());
+
+            notesListView.getItems().remove(note.getHeader());
+            note.setHeader(newHeader);
+
+            note.setTime(DataHandler.formatDate(LocalDateTime.now()));
+
+            DataHandler.insertToListView(notesListView, note, index);
+
+            DataBase.updateNoteHeader(oldHeader, newHeader);
+        }
     }
 
     public void deleteNoteAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {

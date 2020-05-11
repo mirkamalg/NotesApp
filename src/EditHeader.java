@@ -33,7 +33,7 @@ public class EditHeader {
 
         AtomicReference<String> newHeader = new AtomicReference<>();
         applyButton.setOnAction(e -> {
-            if (!newHeaderInput.getText().isEmpty()){
+            if (!newHeaderInput.getText().isEmpty() && !DataHandler.getNotes().containsKey(newHeaderInput.getText())){
                 newHeader.set(newHeaderInput.getText());
                 window.close();
             }
