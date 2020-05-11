@@ -82,11 +82,14 @@ public class DataBase {
         if (con == null) {
             getConnection();
         }
-        PreparedStatement prep = con.prepareStatement("UPDATE notes SET body=?"
+        PreparedStatement prep = con.prepareStatement("UPDATE notes SET body=?, time=? "
         + "WHERE header=?");
 
+        String formattedTime = DataHandler.formatDate(LocalDateTime.now());
+
         prep.setString(1, newBody);
-        prep.setString(2, header);
+        prep.setString(2, formattedTime);
+        prep.setString(3, header);
         prep.executeUpdate();
     }
 
