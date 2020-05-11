@@ -1,0 +1,34 @@
+.root {
+    -fx-background-color: #303a52;
+}
+
+.buttonbar {
+    -fx-background-color: #303a52;
+}
+
+.buttonbarbuttons {
+    -fx-text-fill: aliceblue;
+}
+
+.splitpane {
+    -fx-background-color: #303a52;
+}
+
+.labels {
+    -fx-text-fill: aliceblue;
+}
+
+.highlightedelements {
+    -fx-background-color: #212b43;
+    -fx-text-fill: aliceblue;
+    -fx-progress-color: #303a52;
+}
+
+.list-view .list-cell:selected{
+    -fx-background-color: #574b90;
+}
+
+.list-view .list-cell{
+    -fx-background-color: #303a52;
+    -fx-text-fill: aliceblue;
+}

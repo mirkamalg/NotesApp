@@ -5,8 +5,6 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -14,50 +12,60 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<VBox prefHeight="600.0" prefWidth="900.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
   <children>
-      <HBox prefHeight="21.0" prefWidth="900.0">
+      <HBox prefHeight="21.0" prefWidth="900.0" styleClass="buttonbar">
          <children>
-            <JFXButton fx:id="newNoteButton" onAction="#newNoteAction" text="New Note" />
-            <JFXButton fx:id="editHeaderButton" disable="true" onAction="#editHeaderAction" text="Edit Header" />
-            <JFXButton fx:id="deleteButton" disable="true" onAction="#deleteNoteAction" text="Delete" />
-            <JFXButton fx:id="saveButton" disable="true" onAction="#saveNoteAction" text="Save" />
-            <JFXButton fx:id="exitButton" onAction="#exitApp" text="Exit" />
+            <JFXButton fx:id="newNoteButton" onAction="#newNoteAction" styleClass="buttonbarbuttons" text="New Note" />
+            <JFXButton fx:id="editHeaderButton" disable="true" onAction="#editHeaderAction" styleClass="buttonbarbuttons" text="Edit Header" />
+            <JFXButton fx:id="deleteButton" disable="true" onAction="#deleteNoteAction" styleClass="buttonbarbuttons" text="Delete" />
+            <JFXButton fx:id="saveButton" disable="true" onAction="#saveNoteAction" styleClass="buttonbarbuttons" text="Save" />
+            <JFXButton fx:id="exitButton" onAction="#exitApp" styleClass="buttonbarbuttons" text="Exit" />
          </children>
       </HBox>
-    <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <items>
-        <AnchorPane>
-          <children>
-            <Label fx:id="todoLabel" alignment="CENTER" layoutX="105.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Notes" textAlignment="CENTER" wrapText="false">
-              <font>
-                <Font size="18.0" fx:id="x1" />
-              </font>
-              <textFill>
-                <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
-              </textFill>
-            </Label>
-                  <JFXListView fx:id="notesListView" editable="true" layoutX="37.0" layoutY="41.0" onMouseClicked="#getSelectedNote" prefHeight="498.0" prefWidth="200.0" />
-          </children>
-        </AnchorPane>
-        <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
-          <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
-              <children>
-                <Label fx:id="headerLabel" alignment="CENTER" font="$x1" layoutX="235.0" layoutY="14.0" style="&#10;" text="Note context" textFill="$x2" wrapText="false" />
-                        <JFXTextArea fx:id="noteTextArea" editable="false" layoutX="60.0" layoutY="44.0" prefHeight="492.0" prefWidth="414.0" text="Note context will be shown here" wrapText="true" />
-              </children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <AnchorPane>
+               <children>
+                  <Label fx:id="notesLabel" alignment="CENTER" layoutX="105.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" styleClass="labels" text="Notes" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x1" />
+                     </font>
+                     <textFill>
+                        <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
+                     </textFill>
+                  </Label>
+                  <JFXListView fx:id="notesListView" editable="true" layoutX="37.0" layoutY="41.0" onMouseClicked="#getSelectedNote" prefHeight="498.0" prefWidth="200.0" styleClass="highlightedelements" />
+               </children>
             </AnchorPane>
-          </content>
-        </ScrollPane>
-        <AnchorPane>
-          <children>
-            <Label fx:id="detailsLabel" alignment="CENTER" font="$x1" layoutX="110.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                  <JFXTextArea fx:id="detailsTextArea" editable="false" layoutX="40.0" layoutY="41.0" prefHeight="498.0" prefWidth="200.0" text="Note details will be shown here" />
-          </children>
-        </AnchorPane>
-      </items>
-    </SplitPane>
+            <AnchorPane id="Content" fx:id="middleAnchor" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="488.0" styleClass="root">
+               <children>
+                  <Label fx:id="headerLabel" alignment="CENTER" layoutX="235.0" layoutY="14.0" style="&#10;" styleClass="labels" text="Note context" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x11" />
+                     </font>
+                     <textFill>
+                        <Color blue="0.624" green="0.624" red="0.624" fx:id="x21" />
+                     </textFill>
+                  </Label>
+                  <JFXTextArea fx:id="noteTextArea" editable="false" layoutX="48.0" layoutY="39.0" prefHeight="500.0" prefWidth="488.0" styleClass="highlightedelements" text="Note context will be shown here" wrapText="true" />
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <Label fx:id="detailsLabel" alignment="CENTER" layoutX="170.0" layoutY="14.0" style="&#10;" styleClass="labels" text="Details" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x1" />
+                     </font>
+                     <textFill>
+                        <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
+                     </textFill>
+                  </Label>
+                  <JFXTextArea fx:id="detailsTextArea" editable="false" layoutX="97.0" layoutY="41.0" prefHeight="498.0" prefWidth="251.0" styleClass="highlightedelements" text="Note details will be shown here" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
       <children>
         <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
@@ -68,7 +76,7 @@
             <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
           </textFill>
         </Label>
-        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+        <Pane prefHeight="0.0" prefWidth="949.0" styleClass="highlightedelements" HBox.hgrow="ALWAYS" />
         <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
       </children>
       <padding>

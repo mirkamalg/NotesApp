@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -62,6 +63,9 @@ public class MainController implements Initializable {
 
     @FXML
     private Color x4;
+
+    @FXML
+    private AnchorPane middleAnchor;
 
     public void newNoteAction(ActionEvent actionEvent) {
         Note newNote = AddNote.initiateAddNoteScreen().get();
@@ -170,7 +174,5 @@ public class MainController implements Initializable {
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
-
-
     }
 }
