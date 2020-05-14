@@ -4,16 +4,12 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -80,7 +76,7 @@ public class MainController implements Initializable {
 
     public static boolean isThemeSwitchOn;
 
-    public static boolean themeChanged = false;
+//    public static boolean themeChanged = false;
 
     public void newNoteAction(ActionEvent actionEvent) throws IOException {
         Note newNote = AddNote.initiateAddNoteScreen(Main.isDarkModeEnabled).get();
@@ -183,26 +179,28 @@ public class MainController implements Initializable {
     }
 
     public void appSettingsAction(ActionEvent actionEvent) throws IOException {
-        Stage settingsStage = new Stage();
-        settingsStage.setTitle("Settings");
-        settingsStage.initModality(Modality.APPLICATION_MODAL);
 
-        settingsStage.setOnCloseRequest(e -> {
-            if (themeChanged){
-                System.exit(0);
-            }
-        });
-
-        Parent settings = FXMLLoader.load(getClass().getResource("SettingsScreen.fxml"));
-        Scene settingsScene = new Scene(settings, 300, 100);
-
-        settingsStage.setScene(settingsScene);
-        settingsStage.setResizable(false);
-
-        if (Main.isDarkModeEnabled) {
-            settingsScene.getStylesheets().add("darktheme.css");
-        }
-        settingsStage.show();
+        Settings.initializeSettingsScreen(Main.isDarkModeEnabled);
+//        Stage settingsStage = new Stage();
+//        settingsStage.setTitle("Settings");
+//        settingsStage.initModality(Modality.APPLICATION_MODAL);
+//
+//        settingsStage.setOnCloseRequest(e -> {
+//            if (themeChanged){
+//                System.exit(0);
+//            }
+//        });
+//
+//        Parent settings = FXMLLoader.load(getClass().getResource("SettingsScreen.fxml"));
+//        Scene settingsScene = new Scene(settings, 300, 100);
+//
+//        settingsStage.setScene(settingsScene);
+//        settingsStage.setResizable(false);
+//
+//        if (Main.isDarkModeEnabled) {
+//            settingsScene.getStylesheets().add("darktheme.css");
+//        }
+//        settingsStage.show();
     }
 
     @Override
