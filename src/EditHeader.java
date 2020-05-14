@@ -41,41 +41,6 @@ public class EditHeader {
         editHeaderStage.showAndWait();
 
         return newHeader;
-
-
-//        Stage window = new Stage();
-//        window.setTitle("Edit header");
-//        window.initModality(Modality.APPLICATION_MODAL);
-//        window.setResizable(false);
-//
-//        GridPane grid = new GridPane();
-//        grid.setPadding(new Insets(10, 10, 10, 10));
-//        grid.setVgap(12);
-//        grid.setHgap(8);
-//
-//        Label newHeaderLabel = new Label("New header");
-//        GridPane.setConstraints(newHeaderLabel, 0, 0);
-//
-//        JFXTextField newHeaderInput = new JFXTextField();
-//        GridPane.setConstraints(newHeaderInput, 1, 0);
-//
-//        JFXButton applyButton = new JFXButton("Apply");
-//        GridPane.setConstraints(applyButton, 0, 1);
-//
-//        AtomicReference<String> newHeader = new AtomicReference<>();
-//        applyButton.setOnAction(e -> {
-//            if (!newHeaderInput.getText().isEmpty() && !DataHandler.getNotes().containsKey(newHeaderInput.getText())){
-//                newHeader.set(newHeaderInput.getText());
-//                window.close();
-//            }
-//        });
-//
-//        grid.getChildren().addAll(newHeaderLabel, newHeaderInput, applyButton);
-//
-//        Scene scene = new Scene(grid, 350, 85);
-//        window.setScene(scene);
-//        window.showAndWait();
-//        return newHeader;
     }
 
     public void applyAction(ActionEvent actionEvent) {
