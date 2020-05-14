@@ -1,46 +1,73 @@
-import com.jfoenix.controls.JFXButton;
-import javafx.geometry.Pos;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class ExitApp {
 
-    static boolean answer;
+    private static boolean answer;
+    private static Stage exitAppStage;
 
-    public static boolean confirmExit() {
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Are you sure?");
-        window.setResizable(false);
+    public static boolean confirmExit(boolean isDarkModeEnabled) throws IOException {
 
-        javafx.scene.control.Label label = new Label();
-        label.setText("Do you want to exit?");
+        exitAppStage = new Stage();
+        exitAppStage.initModality(Modality.APPLICATION_MODAL);
+        exitAppStage.setTitle("Exit app");
+        exitAppStage.setResizable(false);
 
-        JFXButton yesButton = new JFXButton("yes");
-        JFXButton noButton = new JFXButton("no");
+        Parent exitWindow = FXMLLoader.load(DeleteNote.class.getResource("ExitAppScreen.fxml"));
+        Scene exitScene = new Scene(exitWindow, 400, 100);
 
-        yesButton.setOnAction(e -> {
-            answer = true;
-            window.close();
-        });
-        noButton.setOnAction(e -> {
-            answer = false;
-            window.close();
-        });
+        if (isDarkModeEnabled){
+            exitScene.getStylesheets().add("darktheme.css");
+        }
 
-        HBox layout = new HBox(10);
-        layout.getChildren().addAll(label, yesButton, noButton);
-        layout.setAlignment(Pos.CENTER);
-
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.showAndWait();
+        exitAppStage.setScene(exitScene);
+        exitAppStage.showAndWait();
 
         return answer;
+//        Stage window = new Stage();
+//        window.initModality(Modality.APPLICATION_MODAL);
+//        window.setTitle("Are you sure?");
+//        window.setResizable(false);
+//
+//        javafx.scene.control.Label label = new Label();
+//        label.setText("Do you want to exit?");
+//
+//        JFXButton yesButton = new JFXButton("yes");
+//        JFXButton noButton = new JFXButton("no");
+//
+//        yesButton.setOnAction(e -> {
+//            answer = true;
+//            window.close();
+//        });
+//        noButton.setOnAction(e -> {
+//            answer = false;
+//            window.close();
+//        });
+//
+//        HBox layout = new HBox(10);
+//        layout.getChildren().addAll(label, yesButton, noButton);
+//        layout.setAlignment(Pos.CENTER);
+//
+//        Scene scene = new Scene(layout);
+//        window.setScene(scene);
+//        window.showAndWait();
+//
+//        return answer;
+    }
+
+    public void yesAction(ActionEvent actionEvent) {
+        answer = true;
+        exitAppStage.close();
+    }
+
+    public void noAction(ActionEvent actionEvent) {
+        answer = false;
+        exitAppStage.close();
     }
 }

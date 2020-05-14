@@ -82,13 +82,13 @@ public class MainController implements Initializable {
 
     public static boolean themeChanged = false;
 
-    public void newNoteAction(ActionEvent actionEvent) {
-        Note newNote = AddNote.initiateAddNoteScreen().get();
+    public void newNoteAction(ActionEvent actionEvent) throws IOException {
+        Note newNote = AddNote.initiateAddNoteScreen(Main.isDarkModeEnabled).get();
         DataHandler.addToListView(notesListView, newNote);
     }
 
-    public void exitApp(ActionEvent actionEvent) throws SQLException {
-        boolean answer = ExitApp.confirmExit();
+    public void exitApp(ActionEvent actionEvent) throws SQLException, IOException {
+        boolean answer = ExitApp.confirmExit(Main.isDarkModeEnabled);
         if (answer){
             Stage window = (Stage) exitButton.getScene().getWindow();
             DataBase.closeConnection();
