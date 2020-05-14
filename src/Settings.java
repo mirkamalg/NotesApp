@@ -20,13 +20,16 @@ public class Settings implements Initializable {
     @FXML
     void darkModeToggleAction(ActionEvent event) throws IOException {
         Writer writer = Files.newBufferedWriter(Paths.get("config.json"));
-
         Map<String, String> map = new HashMap<>();
+
+        MainController.themeChanged = !MainController.themeChanged;  //Close the app only if theme is change, changing and reverting back won't be an issue.
 
         if (darkModeToggle.isSelected()) {
             map.put("theme", "dark");
+            MainController.isThemeSwitchOn = true;
         }else{
             map.put("theme", "light");
+            MainController.isThemeSwitchOn = false;
         }
 
         MainController.saveConfigs(map, writer);
@@ -34,7 +37,7 @@ public class Settings implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (Main.isDarkModeEnabled){
+        if (Main.isDarkModeEnabled) {
             darkModeToggle.setSelected(true);
         }
     }

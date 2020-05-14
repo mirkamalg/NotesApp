@@ -19,12 +19,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Writer;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -80,6 +77,10 @@ public class MainController implements Initializable {
 
     @FXML
     private AnchorPane middleAnchor;
+
+    public static boolean isThemeSwitchOn;
+
+    public static boolean themeChanged = false;
 
     public void newNoteAction(ActionEvent actionEvent) {
         Note newNote = AddNote.initiateAddNoteScreen().get();
@@ -185,10 +186,19 @@ public class MainController implements Initializable {
         Stage settingsStage = new Stage();
         settingsStage.setTitle("Settings");
         settingsStage.initModality(Modality.APPLICATION_MODAL);
+
+        settingsStage.setOnCloseRequest(e -> {
+            if (themeChanged){
+                System.exit(0);
+            }
+        });
+
         Parent settings = FXMLLoader.load(getClass().getResource("SettingsScreen.fxml"));
         Scene settingsScene = new Scene(settings, 300, 100);
+
         settingsStage.setScene(settingsScene);
         settingsStage.setResizable(false);
+
         if (Main.isDarkModeEnabled) {
             settingsScene.getStylesheets().add("darktheme.css");
         }
@@ -210,7 +220,7 @@ public class MainController implements Initializable {
             throwables.printStackTrace();
         }
 
-
+        isThemeSwitchOn = Main.isDarkModeEnabled;
     }
 
 
