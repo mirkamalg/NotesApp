@@ -2,6 +2,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,6 +26,9 @@ public class ExitApp {
         if (isDarkModeEnabled){
             exitScene.getStylesheets().add("darktheme.css");
         }
+
+        //  Adding window icon (Exit app window)
+        exitAppStage.getIcons().add(new Image(Main.class.getResourceAsStream("res/exitappicon.png")));
 
         exitAppStage.setScene(exitScene);
         exitAppStage.showAndWait();

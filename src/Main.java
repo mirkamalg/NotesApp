@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,6 +25,9 @@ public class Main extends Application {
         mainScene = new Scene(root, 1100, 600);
         primaryStage.setScene(mainScene);
         primaryStage.setResizable(true);
+
+        //  Adding app icon (primary screen)
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("res/appicon.png")));
 
         loadConfigs();
         primaryStage.show();

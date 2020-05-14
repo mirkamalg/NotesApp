@@ -1,19 +1,12 @@
-import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class DeleteNote {
 
@@ -33,6 +26,9 @@ public class DeleteNote {
         if (isDarkModeEnabled){
             deleteScene.getStylesheets().add("darktheme.css");
         }
+
+        //  Adding window icon (Delete note window)
+        deleteNoteStage.getIcons().add(new Image(Main.class.getResourceAsStream("res/deletenoteicon.png")));
 
         deleteNoteStage.setScene(deleteScene);
         deleteNoteStage.showAndWait();

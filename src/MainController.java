@@ -207,7 +207,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        DataBase dataBase = new DataBase();
+        DataBase dataBase = new DataBase();  //Load note data from SQLite database
         ResultSet rs;
 
         try {

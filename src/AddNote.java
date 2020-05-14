@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
@@ -43,6 +44,9 @@ public class AddNote {
         if (isDarkModeEnabled) {
             addScene.getStylesheets().add("darktheme.css");
         }
+
+        //  Adding window icon (Add note window icon)
+        addNoteStage.getIcons().add(new Image(Main.class.getResourceAsStream("res/addnoteicon.png")));
 
         addNoteStage.setScene(addScene);
         addNoteStage.showAndWait();

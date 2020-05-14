@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -32,6 +33,9 @@ public class EditHeader {
         if (isDarkModeEnabled){
             editScene.getStylesheets().add("darktheme.css");
         }
+
+        //  Adding window icon (Edit header icon)
+        editHeaderStage.getIcons().add(new Image(Main.class.getResourceAsStream("res/editnoteheadericon.png")));
 
         editHeaderStage.setScene(editScene);
         editHeaderStage.showAndWait();
