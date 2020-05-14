@@ -1,45 +1,53 @@
 import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class DeleteNote {
 
     private static boolean answer;
+    private static Stage deleteNoteStage;
 
-    public static boolean confirmDelete(String deletedHeader) {
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Are you sure?");
-        window.setResizable(false);
+    public static boolean confirmDelete(boolean isDarkModeEnabled) throws IOException {
 
-        javafx.scene.control.Label label = new Label();
-        label.setText("Do you want to delete '" + deletedHeader + "'?");
+        deleteNoteStage = new Stage();
+        deleteNoteStage.initModality(Modality.APPLICATION_MODAL);
+        deleteNoteStage.setTitle("Delete note");
+        deleteNoteStage.setResizable(false);
 
-        JFXButton yesButton = new JFXButton("yes");
-        JFXButton noButton = new JFXButton("no");
+        Parent deleteWindow = FXMLLoader.load(DeleteNote.class.getResource("DeleteNoteConfirmScreen.fxml"));
+        Scene deleteScene = new Scene(deleteWindow, 400, 100);
 
-        yesButton.setOnAction(e -> {
-            answer = true;
-            window.close();
-        });
-        noButton.setOnAction(e -> {
-            answer = false;
-            window.close();
-        });
+        if (isDarkModeEnabled){
+            deleteScene.getStylesheets().add("darktheme.css");
+        }
 
-        HBox layout = new HBox(10);
-        layout.getChildren().addAll(label, yesButton, noButton);
-        layout.setAlignment(Pos.CENTER);
-
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.showAndWait();
+        deleteNoteStage.setScene(deleteScene);
+        deleteNoteStage.showAndWait();
 
         return answer;
+    }
+
+    public void yesAction(ActionEvent actionEvent) {
+        answer = true;
+        deleteNoteStage.close();
+    }
+
+    public void noAction(ActionEvent actionEvent) {
+        answer = false;
+        deleteNoteStage.close();
     }
 
 }

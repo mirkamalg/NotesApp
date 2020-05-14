@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DeleteNote">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="400.0">
+         <children>
+            <Label fx:id="questionLabel" text="Do you want to delete the note?" styleClass="labels">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <JFXButton fx:id="yesButton" onAction="#yesAction" text="Yes" styleClass="buttonbarbuttons" />
+                  <JFXButton fx:id="noButton" onAction="#noAction" text="No" styleClass="buttonbarbuttons"/>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -104,9 +104,9 @@ public class MainController implements Initializable {
     }
 
 
-    public void editHeaderAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    public void editHeaderAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException, IOException {
         String oldHeader = notesListView.getSelectionModel().getSelectedItem();
-        String newHeader = EditHeader.initiateEditHeaderScreen().get();
+        String newHeader = EditHeader.initiateEditHeaderScreen(Main.isDarkModeEnabled).get();
 
         if (newHeader != null) {
             int index = notesListView.getSelectionModel().getSelectedIndex();
@@ -124,9 +124,9 @@ public class MainController implements Initializable {
         }
     }
 
-    public void deleteNoteAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    public void deleteNoteAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException, IOException {
         String deletedHeader = notesListView.getSelectionModel().getSelectedItem();
-        boolean answer = DeleteNote.confirmDelete(deletedHeader);
+        boolean answer = DeleteNote.confirmDelete(Main.isDarkModeEnabled);
 
         if (answer){
             notesListView.getItems().remove(DataHandler.getNotes().get(deletedHeader).getHeader());
@@ -182,17 +182,17 @@ public class MainController implements Initializable {
     }
 
     public void appSettingsAction(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        stage.setTitle("Settings");
-        stage.initModality(Modality.APPLICATION_MODAL);
+        Stage settingsStage = new Stage();
+        settingsStage.setTitle("Settings");
+        settingsStage.initModality(Modality.APPLICATION_MODAL);
         Parent settings = FXMLLoader.load(getClass().getResource("SettingsScreen.fxml"));
         Scene settingsScene = new Scene(settings, 300, 100);
-        stage.setScene(settingsScene);
-        stage.setResizable(false);
+        settingsStage.setScene(settingsScene);
+        settingsStage.setResizable(false);
         if (Main.isDarkModeEnabled) {
             settingsScene.getStylesheets().add("darktheme.css");
         }
-        stage.show();
+        settingsStage.show();
     }
 
     @Override
