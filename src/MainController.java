@@ -1,20 +1,31 @@
+import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -30,6 +41,9 @@ public class MainController implements Initializable {
 
     @FXML
     private JFXButton saveButton;
+
+    @FXML
+    private JFXButton settingsButton;
 
     @FXML
     private JFXButton exitButton;
@@ -156,8 +170,29 @@ public class MainController implements Initializable {
         }
     }
 
-    public JFXListView<String> getNotesListView() {
-        return notesListView;
+    public static void saveConfigs(Map<String, String> map, Writer writer) {
+        Gson gson = new Gson();
+
+        try {
+            gson.toJson(map, writer);
+            writer.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void appSettingsAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        stage.setTitle("Settings");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        Parent settings = FXMLLoader.load(getClass().getResource("SettingsScreen.fxml"));
+        Scene settingsScene = new Scene(settings, 300, 100);
+        stage.setScene(settingsScene);
+        stage.setResizable(false);
+        if (Main.isDarkModeEnabled) {
+            settingsScene.getStylesheets().add("darktheme.css");
+        }
+        stage.show();
     }
 
     @Override
@@ -174,5 +209,9 @@ public class MainController implements Initializable {
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
+
+
     }
+
+
 }

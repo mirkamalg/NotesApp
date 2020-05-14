@@ -20,6 +20,7 @@
             <JFXButton fx:id="editHeaderButton" disable="true" onAction="#editHeaderAction" styleClass="buttonbarbuttons" text="Edit Header" />
             <JFXButton fx:id="deleteButton" disable="true" onAction="#deleteNoteAction" styleClass="buttonbarbuttons" text="Delete" />
             <JFXButton fx:id="saveButton" disable="true" onAction="#saveNoteAction" styleClass="buttonbarbuttons" text="Save" />
+            <JFXButton fx:id="settingsButton" onAction="#appSettingsAction" text="Settings" styleClass="buttonbarbuttons"/>
             <JFXButton fx:id="exitButton" onAction="#exitApp" styleClass="buttonbarbuttons" text="Exit" />
          </children>
       </HBox>

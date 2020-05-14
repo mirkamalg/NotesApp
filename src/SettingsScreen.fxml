@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="236.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Settings" styleClass="root">
+   <children>
+      <VBox prefHeight="236.0" prefWidth="408.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label text="Settings" styleClass="buttonbarbuttons">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </Label>
+            <JFXToggleButton fx:id="darkModeToggle" onAction="#darkModeToggleAction" text="Dark Mode" styleClass="buttonbarbuttons">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXToggleButton>
+         </children>
+         <padding>
+            <Insets left="20.0" top="15.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
