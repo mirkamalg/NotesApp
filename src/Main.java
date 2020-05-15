@@ -24,7 +24,7 @@ public class Main extends Application {
         primaryStage.setTitle("Notes");
         mainScene = new Scene(root, 1100, 600);
         primaryStage.setScene(mainScene);
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
 
         //  Adding app icon (primary screen)
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("res/appicon.png")));
@@ -46,12 +46,15 @@ public class Main extends Application {
             Map<String, String> map = gson.fromJson(reader, Map.class);
             reader.close();
 
-            String darkMode = map.get("theme");
+            String theme = map.get("theme");
 
-            if (darkMode.equals("dark")){
+            if (theme.equals("dark")){
                 mainScene.getStylesheets().clear();
                 mainScene.getStylesheets().add("/darktheme.css");
                 isDarkModeEnabled = true;
+            }else if (theme.equals("light")) {
+                mainScene.getStylesheets().clear();
+                mainScene.getStylesheets().add("/lighttheme.css");
             }
 
 

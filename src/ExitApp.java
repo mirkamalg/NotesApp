@@ -25,6 +25,9 @@ public class ExitApp {
 
         if (isDarkModeEnabled){
             exitScene.getStylesheets().add("darktheme.css");
+        }else {
+            exitScene.getStylesheets().clear();
+            exitScene.getStylesheets().add("/lighttheme.css");
         }
 
         //  Adding window icon (Exit app window)

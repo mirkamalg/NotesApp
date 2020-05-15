@@ -1,0 +1,54 @@
+.root {
+    -fx-background-color: #ffffff;
+}
+
+.buttonbar {
+    -fx-background-color: #f0f0f0;
+}
+
+.buttonbarbuttons {
+    -fx-text-fill: black;
+}
+
+.splitpane {
+    -fx-background-color: #ffffff;
+}
+
+.labels {
+    -fx-text-fill: black;
+}
+
+.highlightedelements {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: black;
+    -fx-progress-color: #f0f0f0;
+}
+
+.list-view .list-cell:selected{
+    -fx-background-color: #ffe8df;
+}
+
+.list-view .list-cell{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+}
+
+.raised-buttons {
+    -fx-text-fill: black;
+    -jfx-button-type: RAISED;
+    -fx-background-color: #c0a9a1;
+}
+
+.jfx-text-field {
+    -jfx-focus-color: #c0a9a1;
+    -fx-highlight-fill: #888888;
+}
+
+.jfx-text-area {
+    -jfx-focus-color: #c0a9a1;
+    -fx-highlight-fill: #888888;
+}
+
+.jfx-toggle-button {
+    -jfx-toggle-color: #c0a9a1;
+}

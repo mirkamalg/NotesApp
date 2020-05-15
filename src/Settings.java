@@ -62,6 +62,9 @@ public class Settings implements Initializable {
 
         if (Main.isDarkModeEnabled) {
             settingsScene.getStylesheets().add("darktheme.css");
+        }else{
+            settingsScene.getStylesheets().clear();
+            settingsScene.getStylesheets().add("/lighttheme.css");
         }
 
         //  Adding window icon (App settings window

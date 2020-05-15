@@ -17,8 +17,8 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <JFXButton fx:id="yesButton" onAction="#yesAction" text="Yes" styleClass="buttonbarbuttons"/>
-                  <JFXButton fx:id="noButton" onAction="#noAction" text="No" styleClass="buttonbarbuttons"/>
+                  <JFXButton fx:id="yesButton" onAction="#yesAction" text="Yes" styleClass="raised-buttons"/>
+                  <JFXButton fx:id="noButton" onAction="#noAction" text="No" styleClass="raised-buttons"/>
                </children>
             </HBox>
          </children>

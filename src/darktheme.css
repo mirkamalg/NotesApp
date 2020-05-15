@@ -32,3 +32,21 @@
     -fx-background-color: #303a52;
     -fx-text-fill: aliceblue;
 }
+
+.raised-buttons {
+    -fx-text-fill: aliceblue;
+    -jfx-button-type: RAISED;
+    -fx-background-color: #212b43;
+}
+
+.jfx-toggle-button {
+    -jfx-toggle-color: #574b90;
+}
+
+.jfx-text-field {
+    -fx-highlight-fill: #543864;
+}
+
+.jfx-text-area {
+    -fx-highlight-fill: #543864;
+}

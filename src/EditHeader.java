@@ -32,6 +32,9 @@ public class EditHeader {
 
         if (isDarkModeEnabled){
             editScene.getStylesheets().add("darktheme.css");
+        }else {
+            editScene.getStylesheets().clear();
+            editScene.getStylesheets().add("/lighttheme.css");
         }
 
         //  Adding window icon (Edit header icon)

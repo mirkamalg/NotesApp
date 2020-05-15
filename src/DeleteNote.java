@@ -25,6 +25,9 @@ public class DeleteNote {
 
         if (isDarkModeEnabled){
             deleteScene.getStylesheets().add("darktheme.css");
+        }else {
+            deleteScene.getStylesheets().clear();
+            deleteScene.getStylesheets().add("/lighttheme.css");
         }
 
         //  Adding window icon (Delete note window)

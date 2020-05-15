@@ -181,26 +181,6 @@ public class MainController implements Initializable {
     public void appSettingsAction(ActionEvent actionEvent) throws IOException {
 
         Settings.initializeSettingsScreen(Main.isDarkModeEnabled);
-//        Stage settingsStage = new Stage();
-//        settingsStage.setTitle("Settings");
-//        settingsStage.initModality(Modality.APPLICATION_MODAL);
-//
-//        settingsStage.setOnCloseRequest(e -> {
-//            if (themeChanged){
-//                System.exit(0);
-//            }
-//        });
-//
-//        Parent settings = FXMLLoader.load(getClass().getResource("SettingsScreen.fxml"));
-//        Scene settingsScene = new Scene(settings, 300, 100);
-//
-//        settingsStage.setScene(settingsScene);
-//        settingsStage.setResizable(false);
-//
-//        if (Main.isDarkModeEnabled) {
-//            settingsScene.getStylesheets().add("darktheme.css");
-//        }
-//        settingsStage.show();
     }
 
     @Override

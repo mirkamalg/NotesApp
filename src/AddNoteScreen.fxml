@@ -32,7 +32,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <JFXButton fx:id="addButton" onAction="#addAction" text="Add" GridPane.rowIndex="2" styleClass="buttonbarbuttons">
+            <JFXButton fx:id="addButton" onAction="#addAction" text="Add" GridPane.rowIndex="2" styleClass="raised-buttons">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>

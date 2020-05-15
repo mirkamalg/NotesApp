@@ -43,6 +43,9 @@ public class AddNote {
 
         if (isDarkModeEnabled) {
             addScene.getStylesheets().add("darktheme.css");
+        }else{
+            addScene.getStylesheets().clear();
+            addScene.getStylesheets().add("/lighttheme.css");
         }
 
         //  Adding window icon (Add note window icon)
