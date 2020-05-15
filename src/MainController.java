@@ -76,7 +76,7 @@ public class MainController implements Initializable {
 
     public static boolean isThemeSwitchOn;
 
-//    public static boolean themeChanged = false;
+    public static String currentHeader;  //  EditHeader will access this, cannot setText otherwise
 
     public void newNoteAction(ActionEvent actionEvent) throws IOException {
         Note newNote = AddNote.initiateAddNoteScreen(Main.isDarkModeEnabled).get();
@@ -102,7 +102,8 @@ public class MainController implements Initializable {
 
 
     public void editHeaderAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException, IOException {
-        String oldHeader = notesListView.getSelectionModel().getSelectedItem();
+        currentHeader = notesListView.getSelectionModel().getSelectedItem();
+        String oldHeader = currentHeader;
         String newHeader = EditHeader.initiateEditHeaderScreen(Main.isDarkModeEnabled).get();
 
         if (newHeader != null) {

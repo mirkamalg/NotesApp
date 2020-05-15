@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -15,9 +16,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class EditHeader {
+public class EditHeader implements Initializable {
 
     @FXML
     private JFXTextField newHeaderTextField;
@@ -98,5 +101,11 @@ public class EditHeader {
 
             dialog.show();
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //  Setting old header as default text
+        newHeaderTextField.setText(MainController.currentHeader);
     }
 }
