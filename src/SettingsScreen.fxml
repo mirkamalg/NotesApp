@@ -4,11 +4,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="80.0" prefWidth="400.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Settings">
+<?import javafx.scene.text.Font?>
+<AnchorPane minHeight="-Infinity" prefHeight="150.0" prefWidth="350.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Settings">
    <children>
-      <VBox prefHeight="80.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <VBox maxHeight="150.0" maxWidth="350.0" minHeight="-Infinity" prefHeight="150.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="buttonbarbuttons" text="Settings">
+            <Label styleClass="labels" text="Settings">
                <padding>
                   <Insets left="15.0" />
                </padding>
@@ -18,9 +19,17 @@
                   <Insets />
                </VBox.margin>
             </JFXToggleButton>
+            <Label text="Theme change requires restart. Changing app theme and closing this window will close the app." wrapText="true" styleClass="labels">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
          </children>
          <padding>
-            <Insets left="20.0" top="15.0" />
+            <Insets left="15.0" top="15.0" />
          </padding>
       </VBox>
    </children>

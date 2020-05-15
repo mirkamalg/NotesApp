@@ -55,7 +55,7 @@ public class Settings implements Initializable {
         });
 
         Parent settings = FXMLLoader.load(Settings.class.getResource("SettingsScreen.fxml"));
-        Scene settingsScene = new Scene(settings, 300, 100);
+        Scene settingsScene = new Scene(settings, 300, 125);
 
         settingsStage.setScene(settingsScene);
         settingsStage.setResizable(false);
