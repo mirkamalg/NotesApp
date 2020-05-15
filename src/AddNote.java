@@ -22,7 +22,6 @@ public class AddNote {
     @FXML
     private StackPane pane;
 
-
     @FXML
     private JFXButton addButton;
 

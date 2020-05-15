@@ -180,7 +180,8 @@ public class MainController implements Initializable {
 
     public void appSettingsAction(ActionEvent actionEvent) throws IOException {
 
-        Settings.initializeSettingsScreen(Main.isDarkModeEnabled);
+        Settings settings = new Settings();
+        settings.initializeSettingsScreen(Main.isDarkModeEnabled);
     }
 
     @Override
