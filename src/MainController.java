@@ -142,10 +142,13 @@ public class MainController implements Initializable {
     public void saveNoteAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String header = notesListView.getSelectionModel().getSelectedItem();
         String newText = noteTextArea.getText();
-        DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setBody(newText);
-        DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setTime(DataHandler.formatDate(LocalDateTime.now()));
 
-        DataBase.updateNoteBody(header, newText);
+        if (!DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).getBody().equals(newText)) {  //  Will not save the note if it is not changed.
+            DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setBody(newText);
+            DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setTime(DataHandler.formatDate(LocalDateTime.now()));
+
+            DataBase.updateNoteBody(header, newText);
+        }
     }
 
     private void enableButtons() {
