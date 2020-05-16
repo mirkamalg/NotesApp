@@ -186,6 +186,10 @@ public class MainController implements Initializable {
         Settings.initializeSettingsScreen();
     }
 
+    public void aboutAction(ActionEvent actionEvent) throws IOException {
+        About.initializeAboutScreen();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DataBase dataBase = new DataBase();  //Load note data from SQLite database
@@ -203,6 +207,4 @@ public class MainController implements Initializable {
 
         isThemeSwitchOn = Main.isDarkModeEnabled;
     }
-
-
 }

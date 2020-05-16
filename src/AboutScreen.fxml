@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="125.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="About" styleClass="root">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="300.0">
+         <children>
+            <Label text="NotesApp" styleClass="labels">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label text="Version: 1.0" styleClass="labels">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="For the source code, please visit:" styleClass="labels">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="https://github.com/ShouLie/NotesApp" styleClass="labels">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
