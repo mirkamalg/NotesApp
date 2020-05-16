@@ -1,3 +1,4 @@
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,9 @@ public class Settings implements Initializable {
     @FXML
     private JFXToggleButton darkModeToggle;
 
+    @FXML
+    private JFXButton exportButton;
+
     public static boolean themeChanged = false;
 
     @FXML
@@ -43,7 +47,7 @@ public class Settings implements Initializable {
         MainController.saveConfigs(map, writer);
     }
 
-    static void initializeSettingsScreen(boolean isDarkModeEnabled) throws IOException {
+    static void initializeSettingsScreen() throws IOException {
         Stage settingsStage = new Stage();
         settingsStage.setTitle("Settings");
         settingsStage.initModality(Modality.APPLICATION_MODAL);
@@ -55,7 +59,7 @@ public class Settings implements Initializable {
         });
 
         Parent settings = FXMLLoader.load(Settings.class.getResource("SettingsScreen.fxml"));
-        Scene settingsScene = new Scene(settings, 300, 125);
+        Scene settingsScene = new Scene(settings, 300, 170);
 
         settingsStage.setScene(settingsScene);
         settingsStage.setResizable(false);
@@ -67,7 +71,7 @@ public class Settings implements Initializable {
             settingsScene.getStylesheets().add("/lighttheme.css");
         }
 
-        //  Adding window icon (App settings window
+        //  Adding window icon (App settings window)
         settingsStage.getIcons().add(new Image(Settings.class.getResourceAsStream("res/settingsicon.png")));
         settingsStage.show();
     }
@@ -77,5 +81,9 @@ public class Settings implements Initializable {
         if (Main.isDarkModeEnabled) {
             darkModeToggle.setSelected(true);
         }
+    }
+
+    public void exportAction(ActionEvent actionEvent) throws IOException {
+        Export.initializeExportScreen();
     }
 }

@@ -52,3 +52,9 @@
 .jfx-toggle-button {
     -jfx-toggle-color: #c0a9a1;
 }
+
+.checkbox {
+    -jfx-checked-color: #c0a9a1;
+    -fx-text-fill: black;
+}
+

@@ -50,3 +50,8 @@
 .jfx-text-area {
     -fx-highlight-fill: #543864;
 }
+
+.checkbox {
+    -jfx-checked-color: #543864;
+    -fx-text-fill: aliceblue;
+}
