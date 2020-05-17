@@ -58,3 +58,10 @@
     -fx-text-fill: black;
 }
 
+.searchfield {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: black;
+    -fx-progress-color: #f0f0f0;
+    -fx-prompt-text-fill: #888888;
+}
+

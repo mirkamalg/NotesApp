@@ -2,6 +2,9 @@ import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -73,6 +76,9 @@ public class MainController implements Initializable {
 
     @FXML
     private AnchorPane middleAnchor;
+
+    @FXML
+    private JFXTextField searchNoteField;
 
     public static boolean isThemeSwitchOn;
 
@@ -206,5 +212,21 @@ public class MainController implements Initializable {
         }
 
         isThemeSwitchOn = Main.isDarkModeEnabled;
+
+        // Setting up note headers search feature
+        ObservableList<String> items = notesListView.getItems();
+        FilteredList<String> filteredData = new FilteredList<>(items, s -> true);
+
+        searchNoteField.textProperty().addListener(obs -> {
+            String filter = searchNoteField.getText();
+            if(filter == null || filter.length() == 0) {
+                filteredData.setPredicate(s -> true);
+                notesListView.setItems(items);
+            }
+            else {
+                filteredData.setPredicate(s -> s.contains(filter));
+                notesListView.setItems(filteredData);
+            }
+        });
     }
 }

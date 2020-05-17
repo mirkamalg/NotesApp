@@ -55,3 +55,10 @@
     -jfx-checked-color: #543864;
     -fx-text-fill: aliceblue;
 }
+
+.searchfield {
+    -fx-background-color: #212b43;
+    -fx-text-fill: aliceblue;
+    -fx-progress-color: #303a52;
+    -fx-prompt-text-fill: #888888;
+}
