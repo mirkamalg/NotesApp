@@ -84,6 +84,8 @@ public class MainController implements Initializable {
 
     public static String currentHeader;  //  EditHeader will access this, cannot setText otherwise
 
+    private boolean isHeaderSearchInProgress = false;
+
     public void newNoteAction(ActionEvent actionEvent) throws IOException {
         Note newNote = AddNote.initiateAddNoteScreen(Main.isDarkModeEnabled).get();
         DataHandler.addToListView(notesListView, newNote);
@@ -99,14 +101,14 @@ public class MainController implements Initializable {
     }
 
     public void getSelectedNote(MouseEvent mouseEvent) {
-        enableButtons();
+        if (!isHeaderSearchInProgress) {
+            enableButtons();
+            }
         noteTextArea.setEditable(true);
         String chosenNoteHeader = notesListView.getSelectionModel().getSelectedItem();
         noteTextArea.setText(DataHandler.getNotes().get(chosenNoteHeader).getBody());
         detailsTextArea.setText("Last edited: " + DataHandler.getNotes().get(chosenNoteHeader).getTime() + " By: " + System.getProperty("user.name"));
     }
-
-
     public void editHeaderAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException, IOException {
         currentHeader = notesListView.getSelectionModel().getSelectedItem();
         String oldHeader = currentHeader;
@@ -222,10 +224,14 @@ public class MainController implements Initializable {
             if(filter == null || filter.length() == 0) {
                 filteredData.setPredicate(s -> true);
                 notesListView.setItems(items);
+                isHeaderSearchInProgress = false;
+                enableButtons();
             }
             else {
                 filteredData.setPredicate(s -> s.contains(filter));
                 notesListView.setItems(filteredData);
+                isHeaderSearchInProgress = true;
+                disableButtons();
             }
         });
     }
