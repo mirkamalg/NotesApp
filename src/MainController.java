@@ -161,6 +161,7 @@ public class MainController implements Initializable {
 
     private void enableButtons() {
         if (notesListView.getSelectionModel().getSelectedItem() != null) {
+            newNoteButton.setDisable(false);
             editHeaderButton.setDisable(false);
             deleteButton.setDisable(false);
             saveButton.setDisable(false);
@@ -168,6 +169,7 @@ public class MainController implements Initializable {
     }
 
     private void disableButtons() {
+        newNoteButton.setDisable(true);
         editHeaderButton.setDisable(true);
         deleteButton.setDisable(true);
         saveButton.setDisable(true);
