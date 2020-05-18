@@ -103,9 +103,7 @@ public class MainController implements Initializable {
     }
 
     public void getSelectedNote(MouseEvent mouseEvent) {
-        if (!isHeaderSearchInProgress) {
-            enableButtons();
-            }
+        enableButtons();
         noteTextArea.setEditable(true);
         String chosenNoteHeader = notesListView.getSelectionModel().getSelectedItem();
         noteTextArea.setText(DataHandler.getNotes().get(chosenNoteHeader).getBody());
@@ -227,12 +225,10 @@ public class MainController implements Initializable {
             if(filter == null || filter.length() == 0) {
                 filteredData.setPredicate(s -> true);
                 notesListView.setItems(items);
-                isHeaderSearchInProgress = false;
             }
             else {
                 filteredData.setPredicate(s -> s.contains(filter));
                 notesListView.setItems(filteredData);
-                isHeaderSearchInProgress = true;
             }
         });
     }
