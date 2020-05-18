@@ -1,4 +1,3 @@
-import com.jfoenix.controls.JFXListView;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,16 +10,15 @@ public class DataHandler {
     private static final HashMap<String, Note> notes = new HashMap<>();
 
     @Contract("_, _ -> param1")
-    public static @NotNull JFXListView<String> addToListView(@NotNull JFXListView<String> listView, Note newNote) {
+    public static void addToListView(Note newNote) {
 
         notes.put(newNote.getHeader(), newNote);
-        listView.getItems().add(newNote.getHeader());
-        return listView;
+        MainController.items.add(newNote.getHeader());
     }
 
-    public static void insertToListView(@NotNull JFXListView<String> listView, Note newNote, int index) {
+    public static void insertToListView(Note newNote, int index) {
         notes.put(newNote.getHeader(), newNote);
-        listView.getItems().add(index, newNote.getHeader());
+        MainController.items.add(index, newNote.getHeader());
     }
 
     public static HashMap<String, Note> getNotes() {

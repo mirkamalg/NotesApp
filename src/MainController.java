@@ -84,11 +84,13 @@ public class MainController implements Initializable {
 
     public static String currentHeader;  //  EditHeader will access this, cannot setText otherwise
 
-    private boolean isHeaderSearchInProgress = false;
+    public static boolean isHeaderSearchInProgress = false;
+
+    public static ObservableList<String> items;
 
     public void newNoteAction(ActionEvent actionEvent) throws IOException {
         Note newNote = AddNote.initiateAddNoteScreen(Main.isDarkModeEnabled).get();
-        DataHandler.addToListView(notesListView, newNote);
+        DataHandler.addToListView(newNote);
     }
 
     public void exitApp(ActionEvent actionEvent) throws SQLException, IOException {
@@ -114,17 +116,17 @@ public class MainController implements Initializable {
         String oldHeader = currentHeader;
         String newHeader = EditHeader.initiateEditHeaderScreen(Main.isDarkModeEnabled).get();
 
-        if (newHeader != null) {
-            int index = notesListView.getSelectionModel().getSelectedIndex();
+        if (newHeader != null && !DataHandler.getNotes().containsKey(newHeader)) {
+            int index = MainController.items.indexOf(notesListView.getSelectionModel().getSelectedItem());
 
             Note note = DataHandler.getNotes().remove(notesListView.getSelectionModel().getSelectedItem());
 
-            notesListView.getItems().remove(note.getHeader());
+            items.remove(note.getHeader());
             note.setHeader(newHeader);
 
             note.setTime(DataHandler.formatDate(LocalDateTime.now()));
 
-            DataHandler.insertToListView(notesListView, note, index);
+            DataHandler.insertToListView(note, index);
 
             DataBase.updateNoteHeader(oldHeader, newHeader);
         }
@@ -135,7 +137,7 @@ public class MainController implements Initializable {
         boolean answer = DeleteNote.confirmDelete(Main.isDarkModeEnabled);
 
         if (answer){
-            notesListView.getItems().remove(DataHandler.getNotes().get(deletedHeader).getHeader());
+            items.remove(deletedHeader);
             DataHandler.getNotes().remove(DataHandler.getNotes().get(deletedHeader).getHeader());
 
             DataBase.deleteNote(deletedHeader);
@@ -172,7 +174,6 @@ public class MainController implements Initializable {
         newNoteButton.setDisable(true);
         editHeaderButton.setDisable(true);
         deleteButton.setDisable(true);
-        saveButton.setDisable(true);
     }
 
     private void disableNoteEditing() {
@@ -218,7 +219,7 @@ public class MainController implements Initializable {
         isThemeSwitchOn = Main.isDarkModeEnabled;
 
         // Setting up note headers search feature
-        ObservableList<String> items = notesListView.getItems();
+        items = notesListView.getItems();
         FilteredList<String> filteredData = new FilteredList<>(items, s -> true);
 
         searchNoteField.textProperty().addListener(obs -> {
@@ -227,13 +228,11 @@ public class MainController implements Initializable {
                 filteredData.setPredicate(s -> true);
                 notesListView.setItems(items);
                 isHeaderSearchInProgress = false;
-                enableButtons();
             }
             else {
                 filteredData.setPredicate(s -> s.contains(filter));
                 notesListView.setItems(filteredData);
                 isHeaderSearchInProgress = true;
-                disableButtons();
             }
         });
     }
