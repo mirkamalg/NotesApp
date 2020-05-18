@@ -62,3 +62,15 @@
     -fx-progress-color: #303a52;
     -fx-prompt-text-fill: #888888;
 }
+
+.highlightedelements .scroll-bar:horizontal,
+.highlightedelements  .scroll-bar:vertical{
+    -fx-background-color: #303a52;
+}
+
+.highlightedelements .scroll-bar:horizontal .thumb,
+.highlightedelements .scroll-bar:vertical .thumb {
+    -fx-background-color: #888888;
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-radius: 0em;
+}
