@@ -23,7 +23,7 @@ A material design notes app which packs a small amount of, but essential feature
 * ![Settings Dark Mode](/Screenshots/settingsDark.PNG)
 * ![Export Screen Mixed](/Screenshots/exportMixed.png)
 
-#Roadmap
+# Roadmap
 * Built-in cipher
 * Sorting notes in different orders
 * Highlighter to search words inside a note
