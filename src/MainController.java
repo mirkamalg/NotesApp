@@ -143,6 +143,9 @@ public class MainController implements Initializable {
             noteTextArea.setText("Note is deleted");
             noteTextArea.setEditable(false);
             disableButtons();
+            if (items.isEmpty()){
+                newNoteButton.setDisable(false);
+            }
         }
         disableNoteEditing();
     }
