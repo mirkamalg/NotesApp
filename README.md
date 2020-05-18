@@ -31,6 +31,7 @@ A material design notes app which packs a small amount of, but essential feature
 * Importance system (Maybe)
 * Autosave option
 * Change/Optimize the method to edit headers
+* Choosing which notes to export
 
 # License
 [GNU Lesser General Public License v3.0](https://choosealicense.com/licenses/lgpl-3.0/)
