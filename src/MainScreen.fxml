@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
@@ -37,6 +39,15 @@
                      </textFill>
                   </Label>
                   <JFXTextArea fx:id="noteTextArea" editable="false" layoutX="48.0" layoutY="49.0" prefHeight="500.0" prefWidth="488.0" styleClass="highlightedelements" text="Note context will be shown here" wrapText="true" />
+                  <JFXButton fx:id="copyButton" buttonType="RAISED" layoutX="48.0" layoutY="19.0" maxHeight="30.0" maxWidth="30.0" onAction="#copyAction" prefHeight="30.0" prefWidth="30.0" styleClass="buttonbarbuttons">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/savetexticon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="anchorright">

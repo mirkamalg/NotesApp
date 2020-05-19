@@ -11,6 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.io.Writer;
 import java.net.URL;
@@ -212,5 +215,12 @@ public class MainController implements Initializable {
                 notesListView.setItems(filteredData);
             }
         });
+    }
+
+    public void copyAction(ActionEvent actionEvent) {
+        StringSelection stringSelection = new StringSelection(noteTextArea.getText());
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+
     }
 }
