@@ -29,7 +29,7 @@ A material design notes app which packs a small amount of, but essential feature
 * Highlighter to search words inside a note
 * Keyboard shortcuts
 * Importance system (Maybe)
-* Autosave option
+* ~~Autosave option~~ ✅
 * Change/Optimize the method to edit headers
 * Choosing which notes to export
 
