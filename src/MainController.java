@@ -8,11 +8,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -36,46 +32,19 @@ public class MainController implements Initializable {
     private JFXButton deleteButton;
 
     @FXML
-    private JFXButton saveButton;
-
-    @FXML
     private JFXButton settingsButton;
 
     @FXML
     private JFXButton exitButton;
 
     @FXML
-    private Label todoLabel;
-
-    @FXML
-    private Color x2;
-
-    @FXML
-    private Font x1;
-
-    @FXML
     private JFXListView<String> notesListView = new JFXListView<>();
-
-    @FXML
-    private Label headerLabel;
 
     @FXML
     private JFXTextArea noteTextArea;
 
     @FXML
-    private Label detailsLabel;
-
-    @FXML
     private JFXTextArea detailsTextArea;
-
-    @FXML
-    private Font x3;
-
-    @FXML
-    private Color x4;
-
-    @FXML
-    private AnchorPane middleAnchor;
 
     @FXML
     private JFXTextField searchNoteField;
@@ -172,24 +141,11 @@ public class MainController implements Initializable {
         disableNoteEditing();
     }
 
-    public void saveNoteAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        String header = notesListView.getSelectionModel().getSelectedItem();
-        String newText = noteTextArea.getText();
-
-        if (!DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).getBody().equals(newText)) {  //  Will not save the note if it is not changed.
-            DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setBody(newText);
-            DataHandler.getNotes().get(notesListView.getSelectionModel().getSelectedItem()).setTime(DataHandler.formatDate(LocalDateTime.now()));
-
-            DataBase.updateNoteBody(header, newText);
-        }
-    }
-
     private void enableButtons() {
         if (notesListView.getSelectionModel().getSelectedItem() != null) {
             newNoteButton.setDisable(false);
             editHeaderButton.setDisable(false);
             deleteButton.setDisable(false);
-            saveButton.setDisable(false);
         }
     }
 
