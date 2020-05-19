@@ -27,24 +27,19 @@ public class Settings implements Initializable {
     @FXML
     private JFXButton exportButton;
 
+    @FXML
+    private JFXToggleButton autoSaveToggle;
+
     public static boolean themeChanged = false;
+
+    public static boolean isAutoSaveEnabled;
 
     @FXML
     void darkModeToggleAction(ActionEvent event) throws IOException {
-        Writer writer = Files.newBufferedWriter(Paths.get("config.json"));
-        Map<String, String> map = new HashMap<>();
 
-        themeChanged = !themeChanged;  //Close the app only if theme is change, changing and reverting back won't be an issue.
+        themeChanged = !themeChanged;  //Close the app only if theme is changed, changing and reverting back won't be an issue.
 
-        if (darkModeToggle.isSelected()) {
-            map.put("theme", "dark");
-            MainController.isThemeSwitchOn = true;
-        }else{
-            map.put("theme", "light");
-            MainController.isThemeSwitchOn = false;
-        }
-
-        MainController.saveConfigs(map, writer);
+        saveConfigs();
     }
 
     static void initializeSettingsScreen() throws IOException {
@@ -59,7 +54,7 @@ public class Settings implements Initializable {
         });
 
         Parent settings = FXMLLoader.load(Settings.class.getResource("SettingsScreen.fxml"));
-        Scene settingsScene = new Scene(settings, 300, 170);
+        Scene settingsScene = new Scene(settings, 300, 240);
 
         settingsStage.setScene(settingsScene);
         settingsStage.setResizable(false);
@@ -81,9 +76,40 @@ public class Settings implements Initializable {
         if (Main.isDarkModeEnabled) {
             darkModeToggle.setSelected(true);
         }
+
+        if (Main.isAutoSaveEnabled) {
+            autoSaveToggle.setSelected(true);
+        }
     }
 
     public void exportAction(ActionEvent actionEvent) throws IOException {
         Export.initializeExportScreen();
+    }
+
+    public void autoSaveToggleAction(ActionEvent actionEvent) throws IOException {
+        isAutoSaveEnabled = !isAutoSaveEnabled;
+        Main.isAutoSaveEnabled = !Main.isAutoSaveEnabled;
+        saveConfigs();
+    }
+
+    private void saveConfigs() throws IOException {
+        Writer writer = Files.newBufferedWriter(Paths.get("config.json"));
+        Map<String, String> map = new HashMap<>();
+
+        if (darkModeToggle.isSelected()) {         //  Saving theme configs
+            map.put("theme", "dark");
+            MainController.isThemeSwitchOn = true;
+        }else{
+            map.put("theme", "light");
+            MainController.isThemeSwitchOn = false;
+        }
+
+        if (autoSaveToggle.isSelected()){
+            map.put("autosave", "enabled");
+        }else {
+            map.put("autosave", "disabled");
+        }
+
+        MainController.saveConfigs(map, writer);
     }
 }

@@ -84,9 +84,9 @@ public class MainController implements Initializable {
 
     public static String currentHeader;  //  EditHeader will access this, cannot setText otherwise
 
-    public static boolean isHeaderSearchInProgress = false;
-
     public static ObservableList<String> items;
+
+    private static String chosenHeader;  //  For autosave
 
     public void newNoteAction(ActionEvent actionEvent) throws IOException {
         Note newNote = AddNote.initiateAddNoteScreen(Main.isDarkModeEnabled).get();
@@ -102,7 +102,29 @@ public class MainController implements Initializable {
         }
     }
 
-    public void getSelectedNote(MouseEvent mouseEvent) {
+    public void getSelectedNote(MouseEvent mouseEvent) throws IOException, SQLException, ClassNotFoundException {
+
+        if (!Settings.isAutoSaveEnabled) {
+            if (chosenHeader != null && !chosenHeader.equals(notesListView.getSelectionModel().getSelectedItem()) && !noteTextArea.getText().equals(DataHandler.getNotes().get(chosenHeader).getBody())) {
+                boolean answer = SaveDialog.confirmSave();
+
+                if (answer) {
+                    DataHandler.getNotes().get(chosenHeader).setBody(noteTextArea.getText());
+                    DataHandler.getNotes().get(chosenHeader).setTime(DataHandler.formatDate(LocalDateTime.now()));
+
+                    DataBase.updateNoteBody(chosenHeader, noteTextArea.getText());
+                }
+            }
+        }else{
+            if (chosenHeader != null && !chosenHeader.equals(notesListView.getSelectionModel().getSelectedItem()) && !noteTextArea.getText().equals(DataHandler.getNotes().get(chosenHeader).getBody())) {
+                DataHandler.getNotes().get(chosenHeader).setBody(noteTextArea.getText());
+                DataHandler.getNotes().get(chosenHeader).setTime(DataHandler.formatDate(LocalDateTime.now()));
+
+                DataBase.updateNoteBody(chosenHeader, noteTextArea.getText());
+            }
+        }
+        chosenHeader = notesListView.getSelectionModel().getSelectedItem();
+
         enableButtons();
         noteTextArea.setEditable(true);
         String chosenNoteHeader = notesListView.getSelectionModel().getSelectedItem();

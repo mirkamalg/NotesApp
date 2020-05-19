@@ -6,9 +6,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane minHeight="-Infinity" prefHeight="170.0" prefWidth="350.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Settings">
+<AnchorPane minHeight="-Infinity" prefHeight="240.0" prefWidth="350.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Settings">
    <children>
-      <VBox minHeight="-Infinity" prefHeight="170.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox minHeight="-Infinity" prefHeight="240.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label styleClass="labels" text="Settings">
                <padding>
@@ -20,7 +20,7 @@
                   <Insets />
                </VBox.margin>
             </JFXToggleButton>
-            <Label styleClass="labels" text="Theme change requires restart. Changing app theme and closing this window will close the app." wrapText="true">
+            <Label minHeight="35.0" prefHeight="35.0" styleClass="labels" text="Theme change requires restart. Changing app theme and closing this window will close the app." wrapText="true">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -28,9 +28,10 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <JFXButton fx:id="exportButton" onAction="#exportAction" text="Export notes" styleClass="raised-buttons">
+            <JFXToggleButton fx:id="autoSaveToggle" onAction="#autoSaveToggleAction" text="Auto Save" styleClass="buttonbarbuttons"/>
+            <JFXButton fx:id="exportButton" onAction="#exportAction" styleClass="raised-buttons" text="Export notes">
                <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
+                  <Insets left="10.0" />
                </VBox.margin>
             </JFXButton>
          </children>

@@ -17,6 +17,7 @@ public class Main extends Application {
 
     static Scene mainScene;
     public static boolean isDarkModeEnabled = false;
+    public static boolean isAutoSaveEnabled;
 
     @Override
     public void start(@NotNull Stage primaryStage) throws Exception{
@@ -47,14 +48,21 @@ public class Main extends Application {
             reader.close();
 
             String theme = map.get("theme");
+            String autoSave = map.get("autosave");
 
-            if (theme.equals("dark")){
+            if (theme.equals("dark")){                   //  Loading theme
                 mainScene.getStylesheets().clear();
                 mainScene.getStylesheets().add("/darktheme.css");
                 isDarkModeEnabled = true;
             }else if (theme.equals("light")) {
                 mainScene.getStylesheets().clear();
                 mainScene.getStylesheets().add("/lighttheme.css");
+            }
+
+            if (autoSave.equals("enabled")){             //  Loading autosave
+                isAutoSaveEnabled = true;
+            }else if (autoSave.equals("disabled")){
+                isAutoSaveEnabled = false;
             }
 
 

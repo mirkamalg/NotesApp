@@ -31,41 +31,12 @@ public class ExitApp {
         }
 
         //  Adding window icon (Exit app window)
-        exitAppStage.getIcons().add(new Image(Main.class.getResourceAsStream("res/exitappicon.png")));
+        exitAppStage.getIcons().add(new Image(ExitApp.class.getResourceAsStream("res/exitappicon.png")));
 
         exitAppStage.setScene(exitScene);
         exitAppStage.showAndWait();
 
         return answer;
-//        Stage window = new Stage();
-//        window.initModality(Modality.APPLICATION_MODAL);
-//        window.setTitle("Are you sure?");
-//        window.setResizable(false);
-//
-//        javafx.scene.control.Label label = new Label();
-//        label.setText("Do you want to exit?");
-//
-//        JFXButton yesButton = new JFXButton("yes");
-//        JFXButton noButton = new JFXButton("no");
-//
-//        yesButton.setOnAction(e -> {
-//            answer = true;
-//            window.close();
-//        });
-//        noButton.setOnAction(e -> {
-//            answer = false;
-//            window.close();
-//        });
-//
-//        HBox layout = new HBox(10);
-//        layout.getChildren().addAll(label, yesButton, noButton);
-//        layout.setAlignment(Pos.CENTER);
-//
-//        Scene scene = new Scene(layout);
-//        window.setScene(scene);
-//        window.showAndWait();
-//
-//        return answer;
     }
 
     public void yesAction(ActionEvent actionEvent) {
