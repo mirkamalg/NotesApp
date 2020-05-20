@@ -8,10 +8,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -96,7 +93,7 @@ public class MainController implements Initializable {
                 }
             };
 
-            newNoteButton.getScene().getAccelerators().put(kc, rn);
+            newNoteButton.getScene().getAccelerators().put(kc, rn);  //  using which button to reach to main scene doesn't matter.
         }
 
         if (!Settings.isAutoSaveEnabled) {
@@ -157,10 +154,12 @@ public class MainController implements Initializable {
 
             DataBase.deleteNote(deletedHeader);
 
+            previouslyChosenHeader = null;
+
             noteTextArea.setText("Note is deleted");
             noteTextArea.setEditable(false);
             disableButtons();
-            if (items.isEmpty()){
+            if (items.isEmpty()){                     //  Enable new note button if there is no note
                 newNoteButton.setDisable(false);
             }
         }
@@ -244,5 +243,11 @@ public class MainController implements Initializable {
         StringSelection stringSelection = new StringSelection(noteTextArea.getText());
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
+    }
+
+    public void notesListViewKeyListener(KeyEvent keyEvent) throws SQLException, IOException, ClassNotFoundException {
+        if (keyEvent.getCode().equals(KeyCode.DELETE)) {
+            deleteNoteAction(new ActionEvent());
+        }
     }
 }

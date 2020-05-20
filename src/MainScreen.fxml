@@ -25,7 +25,7 @@
             <AnchorPane fx:id="anchorLeft">
                <children>
                   <JFXTextField fx:id="searchNoteField" layoutX="53.0" layoutY="13.0" prefHeight="27.0" prefWidth="169.0" promptText="Search" styleClass="searchfield" />
-                  <JFXListView fx:id="notesListView" editable="true" layoutX="37.0" layoutY="51.0" onMouseClicked="#getSelectedNote" prefHeight="498.0" prefWidth="200.0" styleClass="highlightedelements" />
+                  <JFXListView fx:id="notesListView" editable="true" layoutX="37.0" layoutY="51.0" onKeyPressed="#notesListViewKeyListener" onMouseClicked="#getSelectedNote" prefHeight="498.0" prefWidth="200.0" styleClass="highlightedelements" />
                </children>
             </AnchorPane>
             <AnchorPane id="Content" fx:id="anchorMiddle" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="488.0" styleClass="root">
