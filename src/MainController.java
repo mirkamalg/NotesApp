@@ -8,6 +8,9 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -58,7 +61,9 @@ public class MainController implements Initializable {
 
     public static ObservableList<String> items;
 
-    private static String chosenHeader;  //  For autosave
+    private static String previouslyChosenHeader;  //  For autosave
+
+    private static String chosenHeader;  //  For CTRL+S save shortcut
 
     public void newNoteAction(ActionEvent actionEvent) throws IOException {
         Note newNote = AddNote.initiateAddNoteScreen(Main.isDarkModeEnabled).get();
@@ -75,27 +80,45 @@ public class MainController implements Initializable {
     }
 
     public void getSelectedNote(MouseEvent mouseEvent) throws IOException, SQLException, ClassNotFoundException {
+        chosenHeader = notesListView.getSelectionModel().getSelectedItem();
 
-        if (!Settings.isAutoSaveEnabled) {
-            if (chosenHeader != null && !chosenHeader.equals(notesListView.getSelectionModel().getSelectedItem()) && !noteTextArea.getText().equals(DataHandler.getNotes().get(chosenHeader).getBody())) {
-                boolean answer = SaveDialog.confirmSave();
-
-                if (answer) {
+        if (previouslyChosenHeader == null) {
+            //  Setting up CTRL+S save shortcut
+            KeyCombination kc = new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN);
+            Runnable rn = ()-> {
+                try {
                     DataHandler.getNotes().get(chosenHeader).setBody(noteTextArea.getText());
                     DataHandler.getNotes().get(chosenHeader).setTime(DataHandler.formatDate(LocalDateTime.now()));
 
                     DataBase.updateNoteBody(chosenHeader, noteTextArea.getText());
+                } catch (SQLException | ClassNotFoundException throwables) {
+                    throwables.printStackTrace();
+                }
+            };
+
+            newNoteButton.getScene().getAccelerators().put(kc, rn);
+        }
+
+        if (!Settings.isAutoSaveEnabled) {
+            if (previouslyChosenHeader != null && !previouslyChosenHeader.equals(notesListView.getSelectionModel().getSelectedItem()) && !noteTextArea.getText().equals(DataHandler.getNotes().get(previouslyChosenHeader).getBody())) {
+                boolean answer = SaveDialog.confirmSave();
+
+                if (answer) {
+                    DataHandler.getNotes().get(previouslyChosenHeader).setBody(noteTextArea.getText());
+                    DataHandler.getNotes().get(previouslyChosenHeader).setTime(DataHandler.formatDate(LocalDateTime.now()));
+
+                    DataBase.updateNoteBody(previouslyChosenHeader, noteTextArea.getText());
                 }
             }
         }else{
-            if (chosenHeader != null && !chosenHeader.equals(notesListView.getSelectionModel().getSelectedItem()) && !noteTextArea.getText().equals(DataHandler.getNotes().get(chosenHeader).getBody())) {
-                DataHandler.getNotes().get(chosenHeader).setBody(noteTextArea.getText());
-                DataHandler.getNotes().get(chosenHeader).setTime(DataHandler.formatDate(LocalDateTime.now()));
+            if (previouslyChosenHeader != null && !previouslyChosenHeader.equals(notesListView.getSelectionModel().getSelectedItem()) && !noteTextArea.getText().equals(DataHandler.getNotes().get(previouslyChosenHeader).getBody())) {
+                DataHandler.getNotes().get(previouslyChosenHeader).setBody(noteTextArea.getText());
+                DataHandler.getNotes().get(previouslyChosenHeader).setTime(DataHandler.formatDate(LocalDateTime.now()));
 
-                DataBase.updateNoteBody(chosenHeader, noteTextArea.getText());
+                DataBase.updateNoteBody(previouslyChosenHeader, noteTextArea.getText());
             }
         }
-        chosenHeader = notesListView.getSelectionModel().getSelectedItem();
+        previouslyChosenHeader = notesListView.getSelectionModel().getSelectedItem();
 
         enableButtons();
         noteTextArea.setEditable(true);
@@ -221,6 +244,5 @@ public class MainController implements Initializable {
         StringSelection stringSelection = new StringSelection(noteTextArea.getText());
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
-
     }
 }

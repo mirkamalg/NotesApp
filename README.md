@@ -27,7 +27,7 @@ A material design notes app which packs a small amount of, but essential feature
 * Built-in cipher
 * Sorting notes in different orders
 * Highlighter to search words inside a note
-* Keyboard shortcuts
+* ~~Keyboard shortcuts~~ ✅
 * Importance system (Maybe)
 * ~~Autosave option~~ ✅
 * Change/Optimize the method to edit headers
