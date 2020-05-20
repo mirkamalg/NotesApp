@@ -12,12 +12,12 @@
    <children>
       <HBox prefHeight="21.0" prefWidth="900.0" styleClass="buttonbar">
          <children>
-            <JFXButton fx:id="newNoteButton" onAction="#newNoteAction" styleClass="buttonbarbuttons" text="New Note" />
-            <JFXButton fx:id="editHeaderButton" disable="true" onAction="#editHeaderAction" styleClass="buttonbarbuttons" text="Edit Header" />
-            <JFXButton fx:id="deleteButton" disable="true" onAction="#deleteNoteAction" styleClass="buttonbarbuttons" text="Delete" />
-            <JFXButton fx:id="settingsButton" onAction="#appSettingsAction" styleClass="buttonbarbuttons" text="Settings" />
-            <JFXButton fx:id="aboutButton" onAction="#aboutAction" styleClass="buttonbarbuttons" text="About" />
-            <JFXButton fx:id="exitButton" onAction="#exitApp" styleClass="buttonbarbuttons" text="Exit" />
+            <JFXButton fx:id="newNoteButton" onAction="#newNoteAction" styleClass="buttonbarbuttons" text="_New Note" />
+            <JFXButton fx:id="editHeaderButton" disable="true" onAction="#editHeaderAction" styleClass="buttonbarbuttons" text="_Edit Header" />
+            <JFXButton fx:id="deleteButton" disable="true" onAction="#deleteNoteAction" styleClass="buttonbarbuttons" text="_Delete" />
+            <JFXButton fx:id="settingsButton" onAction="#appSettingsAction" styleClass="buttonbarbuttons" text="Se_ttings" />
+            <JFXButton fx:id="aboutButton" onAction="#aboutAction" styleClass="buttonbarbuttons" text="A_bout" />
+            <JFXButton fx:id="exitButton" onAction="#exitApp" styleClass="buttonbarbuttons" text="Ex_it" />
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
