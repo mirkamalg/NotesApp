@@ -17,6 +17,7 @@ A material design notes app which packs a small amount of, but essential feature
 * **I'm planning on adding extra features and improving existing ones in the future (see Roadmap part).**
 
 # Screenshots
+##### Screenshots may not represent up to date look of the app, I may forget to update them frequently
 * ![Adding Note Light Mode](/Screenshots/addNoteLight.PNG)
 * ![Edit Header Dark Mode](/Screenshots/editHeaderDark.PNG)
 * ![Settings Light Mode](/Screenshots/settingsLight.PNG)
