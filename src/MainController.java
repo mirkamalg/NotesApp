@@ -63,7 +63,7 @@ public class MainController implements Initializable {
     private static String chosenHeader;  //  For CTRL+S save shortcut
 
     public void newNoteAction(ActionEvent actionEvent) throws IOException {
-        Note newNote = AddNote.initiateAddNoteScreen(Main.isDarkModeEnabled).get();
+        Note newNote = AddNote.initiateAddNoteScreen().get();
         DataHandler.addToListView(newNote);
     }
 
@@ -122,11 +122,19 @@ public class MainController implements Initializable {
         String chosenNoteHeader = notesListView.getSelectionModel().getSelectedItem();
         noteTextArea.setText(DataHandler.getNotes().get(chosenNoteHeader).getBody());
         detailsTextArea.setText("Last edited: " + DataHandler.getNotes().get(chosenNoteHeader).getTime() + " By: " + System.getProperty("user.name"));
+
+        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+            //  Double click on a note to open edit header section
+            if(mouseEvent.getClickCount() == 2){
+                currentHeader = notesListView.getSelectionModel().getSelectedItem();
+                EditHeader.initiateEditHeaderScreen();
+            }
+        }
     }
     public void editHeaderAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException, IOException {
         currentHeader = notesListView.getSelectionModel().getSelectedItem();
         String oldHeader = currentHeader;
-        String newHeader = EditHeader.initiateEditHeaderScreen(Main.isDarkModeEnabled).get();
+        String newHeader = EditHeader.initiateEditHeaderScreen().get();
 
         if (newHeader != null && !DataHandler.getNotes().containsKey(newHeader)) {
             int index = MainController.items.indexOf(notesListView.getSelectionModel().getSelectedItem());

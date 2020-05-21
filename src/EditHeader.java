@@ -34,8 +34,8 @@ public class EditHeader implements Initializable {
 
     private static boolean isDarkModeEnabled = false;
 
-    public static AtomicReference<String> initiateEditHeaderScreen(boolean isDarkModeEnabled) throws IOException {
-        EditHeader.isDarkModeEnabled = isDarkModeEnabled;
+    public static AtomicReference<String> initiateEditHeaderScreen() throws IOException {
+        EditHeader.isDarkModeEnabled = Main.isDarkModeEnabled;
 
         editHeaderStage = new Stage();
         editHeaderStage.initModality(Modality.APPLICATION_MODAL);

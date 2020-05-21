@@ -36,8 +36,8 @@ public class AddNote {
     private static boolean isDarkModeEnabled = false;
 
     public static @NotNull
-    AtomicReference<Note> initiateAddNoteScreen(boolean isDarkModeEnabled) throws IOException {
-        AddNote.isDarkModeEnabled = isDarkModeEnabled;
+    AtomicReference<Note> initiateAddNoteScreen() throws IOException {
+        AddNote.isDarkModeEnabled = Main.isDarkModeEnabled;
 
         addNoteStage = new Stage();
         addNoteStage.initModality(Modality.APPLICATION_MODAL);
