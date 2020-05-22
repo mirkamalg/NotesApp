@@ -31,7 +31,7 @@ A material design notes app which packs a small amount of, but essential feature
 * ~~Keyboard shortcuts~~ ✅
 * Importance system (Maybe)
 * ~~Autosave option~~ ✅
-* Change/Optimize the method to edit headers
+* ~~Change/Optimize the method to edit headers~~ ✅
 * Choosing which notes to export
 
 # License
