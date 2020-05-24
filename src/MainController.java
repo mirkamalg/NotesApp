@@ -258,4 +258,8 @@ public class MainController implements Initializable {
             deleteNoteAction(new ActionEvent());
         }
     }
+
+    public void cipherAction(ActionEvent actionEvent) throws IOException {
+        Encryptor.initializeCipherScreen();
+    }
 }

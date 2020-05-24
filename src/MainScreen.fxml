@@ -15,6 +15,7 @@
             <JFXButton fx:id="newNoteButton" onAction="#newNoteAction" styleClass="buttonbarbuttons" text="_New Note" />
             <JFXButton fx:id="editHeaderButton" disable="true" onAction="#editHeaderAction" styleClass="buttonbarbuttons" text="_Edit Header" />
             <JFXButton fx:id="deleteButton" disable="true" onAction="#deleteNoteAction" styleClass="buttonbarbuttons" text="_Delete" />
+            <JFXButton fx:id="cipherButton" onAction="#cipherAction" text="Cipher" styleClass="buttonbarbuttons"/>
             <JFXButton fx:id="settingsButton" onAction="#appSettingsAction" styleClass="buttonbarbuttons" text="Se_ttings" />
             <JFXButton fx:id="aboutButton" onAction="#aboutAction" styleClass="buttonbarbuttons" text="A_bout" />
             <JFXButton fx:id="exitButton" onAction="#exitApp" styleClass="buttonbarbuttons" text="Ex_it" />
@@ -39,7 +40,7 @@
                      </textFill>
                   </Label>
                   <JFXTextArea fx:id="noteTextArea" editable="false" layoutX="48.0" layoutY="49.0" prefHeight="500.0" prefWidth="488.0" styleClass="highlightedelements" text="Note context will be shown here" wrapText="true" />
-                  <JFXButton fx:id="copyButton" buttonType="RAISED" layoutX="48.0" layoutY="19.0" maxHeight="30.0" maxWidth="30.0" onAction="#copyAction" prefHeight="30.0" prefWidth="30.0" styleClass="buttonbarbuttons">
+                  <JFXButton fx:id="copyButton" buttonType="RAISED" layoutX="48.0" layoutY="19.0" maxHeight="30.0" maxWidth="30.0" onAction="#copyAction" prefHeight="30.0" prefWidth="30.0" styleClass="raised-buttons">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>

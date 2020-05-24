@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="347.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Encryptor">
+   <children>
+      <VBox prefHeight="343.0" prefWidth="600.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="190.0" prefWidth="600.0">
+               <children>
+                  <Label styleClass="labels" text="Text">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <JFXTextArea fx:id="commonTextArea" prefHeight="149.0" prefWidth="482.0" styleClass="highlightedelements">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </JFXTextArea>
+                  <JFXButton fx:id="copyButton" onAction="#copyAction" styleClass="raised-buttons">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@res/savetexticon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label styleClass="labels" text="Key">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <JFXTextField fx:id="keyTextField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" styleClass="highlightedelements">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="31.0" prefWidth="600.0">
+               <children>
+                  <JFXButton fx:id="encryptButton" buttonType="RAISED" onAction="#encryptAction" styleClass="raised-buttons" text="Encrypt" />
+                  <JFXButton fx:id="decryptButton" buttonType="RAISED" onAction="#decryptAction" styleClass="raised-buttons" text="Decrypt">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

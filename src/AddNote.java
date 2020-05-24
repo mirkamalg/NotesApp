@@ -55,7 +55,7 @@ public class AddNote {
         }
 
         //  Adding window icon (Add note window icon)
-        addNoteStage.getIcons().add(new Image(Main.class.getResourceAsStream("res/addnoteicon.png")));
+        addNoteStage.getIcons().add(new Image(AddNote.class.getResourceAsStream("res/addnoteicon.png")));
 
         addNoteStage.setScene(addScene);
         addNoteStage.showAndWait();
