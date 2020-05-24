@@ -25,7 +25,7 @@ A material design notes app which packs a small amount of, but essential feature
 * ![Export Screen Mixed](/Screenshots/exportMixed.png)
 
 # Roadmap
-* Built-in cipher
+* ~~Built-in cipher~~ ✅
 * Sorting notes in different orders
 * Highlighter to search words inside a note
 * ~~Keyboard shortcuts~~ ✅
