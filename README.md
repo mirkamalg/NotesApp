@@ -10,11 +10,12 @@ A material design notes app which packs a small amount of, but essential feature
 
 # Features
 
-* Basic features: Creating and managing your notes.
-* Notes are stored as SQLite database files, therefore it is easy to back up.
-* Notes can be exported from the app as separate text files, or a single zip archive.
-* Dark and light mode support
-* **I'm planning on adding extra features and improving existing ones in the future (see Roadmap part).**
+* Basic features: Creating and managing your notes. 📝
+* Notes are stored as SQLite database files, therefore it is easy to back up. 🗄️
+* Notes can be exported from the app as separate text files, or a single zip archive. ↗️
+* Dark and light mode support 🌙
+* Built-in cipher (Encrypt notes with AES) 🔐
+* **I'm planning on adding extra features and improving existing ones in the future (see Roadmap).**
 
 # Screenshots
 ##### Screenshots may not represent up to date look of the app, I may forget to update them frequently
